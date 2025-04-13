@@ -5,7 +5,13 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED 1
 
 # Install system dependencies including Tesseract OCR
-RUN apt-get update && apt-get install -y tesseract-ocr && apt-get clean
+RUN apt-get update && \
+    apt-get install -y \
+    tesseract-ocr \
+    libsm6 \
+    libxext6 \
+    libxrender-dev && \
+    apt-get clean
 
 # Set the working directory inside the container
 WORKDIR /app
